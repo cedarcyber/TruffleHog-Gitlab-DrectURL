@@ -45,6 +45,3 @@ Contributions are welcome! If you have any suggestions or improvements, feel fre
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
----
-
-This README provides a clear overview of the script's purpose, features, and usage instructions, emphasizing its practical benefits without overcomplicating the explanation.
