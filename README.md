@@ -42,9 +42,6 @@ Here’s an updated version of the prerequisites section with more details on in
   
   2. **Configure the 1Password CLI**: Once installed, you’ll need to authenticate the CLI with your 1Password account and set up access to the vault containing your GitLab access token. The documentation provides detailed steps on how to securely configure and use the CLI.
 
----
-
-This expanded section gives more context on why Docker is needed, how to install it, and how to pull the TruffleHog container, providing users with a comprehensive guide to setting up their environment.
 
 ## Contributions
 
