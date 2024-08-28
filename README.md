@@ -18,12 +18,6 @@ While TruffleHog is a powerful tool for identifying sensitive information in cod
 
 ## Prerequisites
 
-Here’s an updated version of the prerequisites section with more details on installing Docker and pulling the TruffleHog container:
-
----
-
-## Prerequisites
-
 - **Docker**: To get started with Docker:
 
   1. **Install Docker**: Visit the [Docker website](https://www.docker.com/products/docker-desktop) and download Docker Desktop for your operating system. Follow the installation instructions provided for macOS, Windows, or Linux.
