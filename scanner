@@ -1,0 +1,57 @@
+import subprocess
+import re
+
+# Function to execute shell commands and capture the output
+# This function takes a shell command as input, runs it, and returns the output as text.
+def run_command(command):
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    return result.stdout
+
+# Read the GitLab access token
+# Note: It's important not to hardcode tokens directly in the script.
+# Instead, you can use secure methods like the 1Password CLI (shown below) or environment variables.
+# Example using 1Password CLI, get started here https://developer.1password.com/docs/cli/get-started/
+gitlab_access_token = run_command("op read 'op://Example/Folder - Gitlab/password'").strip()
+
+# Run TruffleHog to scan for sensitive information in the specified GitLab repository
+# The command uses Docker to run TruffleHog with the GitLab access token set as an environment variable.
+# Replace "insert gitlab url here" with your actual GitLab URL.
+trufflehog_command = (
+    f"docker run --rm -e GITLAB_ACCESS_TOKEN={gitlab_access_token} "
+    f"trufflesecurity/trufflehog --only-verified git "
+    f"https://oauth2:{gitlab_access_token}@insert-gitlab-url-here/repository-path.git"
+)
+trufflehog_output = run_command(trufflehog_command)
+
+# Define your GitLab repository base URL and path
+# Replace "insert-gitlab-url-here" with your actual GitLab base URL.
+# Replace "repository-path" with the path of your repository in GitLab.
+gitlab_base_url = "https://insert-gitlab-url-here"
+repo_path = "repository-path"
+
+# Initialize variables to store commit hash and file path
+commit_hash = None
+file_path = None
+
+# Process the output from TruffleHog to extract commit hashes and file paths
+# This loop reads each line of the output and checks for lines starting with "Commit:" or "File:"
+# It constructs a direct URL to the file in GitLab if both commit_hash and file_path are found.
+for line in trufflehog_output.splitlines():
+    print(line)  # Output the TruffleHog line as it is
+
+    # Capture the commit hash if the line starts with "Commit:"
+    if line.startswith("Commit:"):
+        commit_hash = line.split(": ")[1].strip()
+    
+    # Capture the file path if the line starts with "File:"
+    if line.startswith("File:"):
+        file_path = line.split(": ")[1].strip()
+
+        # If both commit_hash and file_path are found, construct the direct URL
+        if commit_hash and file_path:
+            direct_url = f"{gitlab_base_url}/{repo_path}/-/blob/{commit_hash}/{file_path}"
+            print(f"Direct URL: {direct_url}")
+
+            # Reset commit_hash and file_path for the next block
+            commit_hash = None
+            file_path = None
