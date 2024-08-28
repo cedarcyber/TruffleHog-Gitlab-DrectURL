@@ -18,26 +18,33 @@ While TruffleHog is a powerful tool for identifying sensitive information in cod
 
 ## Prerequisites
 
-- **Docker**: Ensure Docker is installed and running on your machine.
-- **1Password CLI**: Install and configure the 1Password CLI to securely access your GitLab access token. Refer to the [1Password CLI documentation](https://developer.1password.com/docs/cli/get-started/) for setup instructions.
+Here’s an updated version of the prerequisites section with more details on installing Docker and pulling the TruffleHog container:
 
-## Usage
+---
 
-1. **Clone the Repository**: 
-   ```bash
-   git clone https://github.com/your-repo/your-script.git
-   cd your-script
-   ```
+## Prerequisites
 
-2. **Configure Your Environment**: Ensure you have your 1Password CLI configured and your GitLab access token stored securely.
+- **Docker**: To get started with Docker:
 
-3. **Run the Script**: 
-   ```bash
-   python your_script.py
-   ```
-   Replace `your_script.py` with the actual script filename.
+  1. **Install Docker**: Visit the [Docker website](https://www.docker.com/products/docker-desktop) and download Docker Desktop for your operating system. Follow the installation instructions provided for macOS, Windows, or Linux.
+  
+  2. **Run Docker**: Once installed, ensure Docker is running on your machine. You can check this by opening a terminal or command prompt and running `docker --version` to verify the installation.
 
-4. **Review the Output**: After the script completes, it will output direct URLs to the files in GitLab where sensitive information was detected. Use these links to quickly navigate and review the findings.
+  3. **Pull the TruffleHog Container**: Before running the script, you'll need to pull the TruffleHog Docker image. You can do this by executing the following command in your terminal:
+     ```bash
+     docker pull trufflesecurity/trufflehog
+     ```
+     This command downloads the latest TruffleHog container, ensuring you have all the necessary tools to perform the scan.
+
+- **1Password CLI**: The script uses the 1Password CLI to securely retrieve your GitLab access token, keeping your secrets safe. To set up the 1Password CLI:
+
+  1. **Install the 1Password CLI**: Follow the instructions in the [1Password CLI documentation](https://developer.1password.com/docs/cli/get-started/) to install the CLI for your operating system.
+  
+  2. **Configure the 1Password CLI**: Once installed, you’ll need to authenticate the CLI with your 1Password account and set up access to the vault containing your GitLab access token. The documentation provides detailed steps on how to securely configure and use the CLI.
+
+---
+
+This expanded section gives more context on why Docker is needed, how to install it, and how to pull the TruffleHog container, providing users with a comprehensive guide to setting up their environment.
 
 ## Contributions
 
