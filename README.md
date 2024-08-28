@@ -1,4 +1,4 @@
-# GitLab TruffleHog Scanner with Post-Processing
+# GitLab TruffleHog Scanner with Post-Processing for Direct URL to Commit Hashes
 
 This script is a straightforward tool designed to help you scan your GitLab repositories for sensitive information using TruffleHog and perform post-processing to generate direct URLs to the files in GitLab. This feature is especially useful given that TruffleHog scans all layers of a code repository, providing comprehensive coverage compared to tools that may only scan a limited depth.
 
